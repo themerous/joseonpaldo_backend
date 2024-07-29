@@ -16,3 +16,20 @@ spring:
     show-sql: true
     database: mysql 
     database-platform: org.hibernate.dialect.MySQLDialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_ID}
+            client-secret: ${GOOGLE_PASSWORD}
+            scope: profile, email
+            redirect-uri: "{baseurl}/login/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+            client-name: google
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
