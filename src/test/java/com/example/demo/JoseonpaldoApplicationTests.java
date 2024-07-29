@@ -8,6 +8,7 @@ class JoseonpaldoApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
