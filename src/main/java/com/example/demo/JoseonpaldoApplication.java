@@ -16,5 +16,4 @@ public class JoseonpaldoApplication {
 		System.setProperty("GOOGLE_PASSWORD", dotenv.get("GOOGLE_PASSWORD"));
 		SpringApplication.run(JoseonpaldoApplication.class, args);
 	}
-
 }
