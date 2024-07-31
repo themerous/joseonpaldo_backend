@@ -49,21 +49,21 @@ public class SecurityConfiguration {
 		http.csrf(AbstractHttpConfigurer::disable);
 
 		http.formLogin(formLogin -> {formLogin
-				.loginPage("/auth/login")
+				.loginPage("/api/auth/signin")
 				.loginProcessingUrl("/auth/loginProc")
 				.usernameParameter("email")
 				.defaultSuccessUrl("/")
-				.failureUrl("/auth/login?error")
+				.failureUrl("/api/auth/signin?error")
 				.permitAll();
 		});
 		http.oauth2Login(oauth2Login -> {
-			oauth2Login.loginPage("/auth/login")
+			oauth2Login.loginPage("/api/auth/signin")
 					.userInfoEndpoint((userInfoEndpointConfig -> userInfoEndpointConfig.userService(customOAuth2UserService)));
 		});
 		http.httpBasic((AbstractHttpConfigurer::disable));
 
 		http.authorizeHttpRequests((auth)->{
-			auth.requestMatchers("/auth/login").permitAll()
+			auth.requestMatchers("/api/auth/signin").permitAll()
 					.requestMatchers("/api/**").permitAll()
 					.anyRequest().authenticated();
 		});
@@ -74,8 +74,8 @@ public class SecurityConfiguration {
 		});
 
 		http.logout((auth)->{
-			auth.logoutUrl("/auth/logout")
-					.logoutSuccessUrl("/auth/login");
+			auth.logoutUrl("api/auth/logout")
+					.logoutSuccessUrl("api/auth/signin");
 		});
 
 		return http.build();
@@ -101,6 +101,6 @@ public class SecurityConfiguration {
 
 	@Bean
 	public AuthenticationFailureHandler authenticationFailureHandler() {
-		return new SimpleUrlAuthenticationFailureHandler("/auth/login?error"); // 로그인 실패 시 이동할 URL
+		return new SimpleUrlAuthenticationFailureHandler("/auth/signin?error"); // 로그인 실패 시 이동할 URL
 	}
 }
