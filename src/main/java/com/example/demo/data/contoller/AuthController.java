@@ -19,7 +19,7 @@ public class AuthController {
     }
 
     @GetMapping("/signin")
-    public String authenticate(@RequestParam(name = "authToken",required = false) String authToken){
+    public Map<String,String> authenticate(@RequestParam(name = "authToken",required = false) String authToken){
         Map<String,String> map = new HashMap<>();
 
         if(authToken == null){
@@ -27,7 +27,7 @@ public class AuthController {
         }else{
             map.put("loginStatus","authenticated");
         }
-        return "redirect:http://localhost:3000/";
+        return map;
     }
 
     @ResponseBody
@@ -35,9 +35,6 @@ public class AuthController {
     public String authenticateCallback(@RequestParam(name = "code") String code,
                                        @PathVariable(name = "provider") String provider
                                                    ){
-
-        String token =authService.sendPostRequest(provider,code);
-
-        return token;
+        return authService.sendPostRequest(provider,code);
     }
 }

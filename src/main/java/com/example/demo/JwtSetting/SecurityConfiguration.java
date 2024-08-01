@@ -59,13 +59,14 @@ public class SecurityConfiguration {
 		http.authorizeHttpRequests((auth)->{
 			auth.requestMatchers("/api/auth/**").permitAll()
 					.requestMatchers("/api/**").permitAll()
-					.anyRequest().authenticated();
+					.anyRequest().permitAll();
 		});
 
 		http.sessionManagement((auth)->{
 			auth.maximumSessions(1)
 					.maxSessionsPreventsLogin(false);
 		});
+		http.headers(headers -> headers.frameOptions().disable());
 
 		http.logout((auth)->{
 			auth.logoutUrl("/api/auth/logout")

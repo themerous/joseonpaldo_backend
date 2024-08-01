@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     log.info("Request URI: {}", request.getRequestURI());
 
-    if (!request.getRequestURI().contains("auth/login") && !request.getRequestURI().contains("favicon")) {
+    if (!request.getRequestURI().contains("/api/auth/login") && !request.getRequestURI().contains("favicon")) {
       log.info("Checking token...");
 
       try {
