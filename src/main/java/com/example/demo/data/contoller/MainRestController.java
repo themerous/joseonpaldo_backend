@@ -23,6 +23,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class MainRestController {
     final private MainService service;
 
+    @GetMapping("/health")
+    public String getMethodName(@RequestParam String param) {
+        return "ok";
+    }
+
     // USER
     @GetMapping("/user")
     public UserEntity getUser(@RequestParam("user_id") Long user_id) {
