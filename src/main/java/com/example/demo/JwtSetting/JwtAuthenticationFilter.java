@@ -6,14 +6,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
 @Slf4j
+@Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+  private final JwtTokenProvider jwtTokenProvider;
+
+  @Autowired
+  public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
+    this.jwtTokenProvider = jwtTokenProvider;
+  }
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -27,8 +36,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       try {
         String jwt = getJwtFromRequest(request);
 
-        if (StringUtils.isNotEmpty(jwt) && JwtTokenProvider.validateToken(jwt)) {
-          String userId = JwtTokenProvider.getUserIdFromJWT(jwt);
+        if (StringUtils.isNotEmpty(jwt) && jwtTokenProvider.validateToken(jwt)) {
+          String userId = jwtTokenProvider.getUserIdFromJWT(jwt);
           log.info("Authenticated user ID: {}", userId);
 
           UserAuthentication authentication = new UserAuthentication(userId, null, null);

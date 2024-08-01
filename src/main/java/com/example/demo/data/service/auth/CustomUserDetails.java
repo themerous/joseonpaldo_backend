@@ -1,4 +1,4 @@
-package com.example.demo.data.service;
+package com.example.demo.data.service.auth;
 
 import com.example.demo.data.entity.UserEntity;
 import lombok.AllArgsConstructor;

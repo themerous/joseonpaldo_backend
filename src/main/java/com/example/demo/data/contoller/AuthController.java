@@ -1,6 +1,7 @@
 package com.example.demo.data.contoller;
 
 import com.example.demo.JwtSetting.JwtTokenProvider;
+import com.example.demo.data.service.auth.authService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +12,10 @@ import java.util.Map;
 @RequestMapping("/api/auth")
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class AuthController {
-    private final JwtTokenProvider jwtTokenProvider;
+    private final com.example.demo.data.service.auth.authService authService;
 
-    public AuthController(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
+    public AuthController(authService authService) {
+        this.authService = authService;
     }
 
     @GetMapping("/signin")
@@ -34,8 +35,9 @@ public class AuthController {
     public String authenticateCallback(@RequestParam(name = "code") String code,
                                        @PathVariable(name = "provider") String provider
                                                    ){
-        Map<String,String> map = new HashMap<>();
 
-        return "map";
+        String token =authService.sendPostRequest(provider,code);
+
+        return token;
     }
 }

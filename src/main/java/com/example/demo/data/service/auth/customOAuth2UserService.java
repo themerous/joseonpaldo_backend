@@ -1,11 +1,11 @@
-package com.example.demo.data.service;
+package com.example.demo.data.service.auth;
 
 import com.example.demo.data.entity.UserEntity;
 import com.example.demo.data.repository.UserRepositoryImpl;
-import com.example.demo.data.service.authResponse.OAuth2Response;
-import com.example.demo.data.service.authResponse.googleResponse;
-import com.example.demo.data.service.authResponse.kakaoResponse;
-import com.example.demo.data.service.authResponse.naverReponse;
+import com.example.demo.data.service.auth.authResponse.OAuth2Response;
+import com.example.demo.data.service.auth.authResponse.googleResponse;
+import com.example.demo.data.service.auth.authResponse.kakaoResponse;
+import com.example.demo.data.service.auth.authResponse.naverReponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;

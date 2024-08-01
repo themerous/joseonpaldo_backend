@@ -1,4 +1,4 @@
-package com.example.demo.data.service.authResponse;
+package com.example.demo.data.service.auth.authResponse;
 
 public interface OAuth2Response {
 

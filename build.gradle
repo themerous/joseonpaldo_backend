@@ -34,6 +34,13 @@ dependencies {
 	implementation 'io.github.cdimascio:dotenv-java:2.2.0'
 	implementation 'mysql:mysql-connector-java:8.0.32'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '3.2.5'
+	// Jackson Databind
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0' // 사용하려는 Jackson 버전
+	// Jackson Core
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0'
+	// Jackson Annotations
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.0'
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
