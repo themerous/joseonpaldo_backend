@@ -24,7 +24,7 @@ public class MainRestController {
     final private MainService service;
 
     @GetMapping("/health")
-    public String getMethodName(@RequestParam String param) {
+    public String getMethodName() {
         return "ok";
     }
 
